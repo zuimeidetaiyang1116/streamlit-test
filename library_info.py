@@ -9,6 +9,7 @@ import json
 import pprint
 import datetime
 import random
+import streamlit as st
 
 import requests
 from send_message import send_msg
@@ -23,8 +24,9 @@ next_date = (today + offset).strftime('%Y-%m-%d')
 order_time_list = ['早上', '早上2', '中午', '下午', '下午2', '晚上', '晚上2']
 date_list = [date, next_date]
 
+# with open("token.txt", "r", encoding='utf-8')as f:
+#     token = f.read()
 token = ""
-
 cookie = f"HWWAFSESID=4f4ad7c4620d81af12; HWWAFSESTIME=1664095148908; sid=3; surl=jxut; SmartUserRole=; Auth-Token={token}"
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6307062c)',
@@ -39,10 +41,7 @@ def get_date_seats(date):
     url = "http://jxut.educationgroup.cn/tsg/kzwWx/getSjd"
     session = requests.session()
     page_json = session.post(url=url, headers=headers, data=data).text
-    try:
-        time_data = json.loads(page_json)
-    except:
-        print("page_json为空")
+    time_data = json.loads(page_json)
     timeid_data = {}
     for i in time_data['data']:
         sjdName = i['sjdName']
@@ -124,26 +123,15 @@ def taskdate(date, res):
                 pprint.pprint(timeid_data)
     return res
 
-def get_library_info(token):
-    st.write("正在爬图书馆信息。。")
-    library_info.token = token
-    for date in library_info.date_list:
-        library_info.msg += library_info.find_date_seats(date, '')
-        library_info.res += library_info.taskdate(date,res)
-    send_msg("图书馆有效座位号> 459", library_info.msg, "txt")
-    send_msg("预约座位", library_info.res, "txt")
 
 if __name__ == '__main__':
-    token = st.text_input("请输入token")
-    if token and st.button("点击爬取"):
-        get_library_info(token)
+    token_value = st.text_input("请输入token")
+    if token_value and st.button("点击爬取"):
+        token = token_value
+        for date in date_list:
+            msg += find_date_seats(date, '')
+            res += taskdate(date, res)
+        send_msg("图书馆有效座位号> 459", msg, "txt")
+        send_msg("预约座位", res, "txt")
         st.text(token)
-    for date in date_list:
-        msg += find_date_seats(date, '')
-        res += taskdate(date,res)
-    send_msg("图书馆有效座位号> 459", msg, "txt")
-    send_msg("预约座位", res, "txt")
-    
-    
-    
-    
+
