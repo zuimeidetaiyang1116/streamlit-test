@@ -130,8 +130,8 @@ if __name__ == '__main__':
 
     token_value = st.text_input("请输入token")
     if token_value and st.button("点击爬取"):
-        with open("token.txt", "w", encoding='utf-8')as f:
-            f.write(token_value)
+#         with open("token.txt", "w", encoding='utf-8')as f:
+#             f.write(token_value)
         for date in date_list:
             msg += find_date_seats(date, '')
             res += taskdate(date, res)
