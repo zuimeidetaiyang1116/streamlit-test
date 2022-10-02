@@ -35,8 +35,20 @@ while not st.button("爬取"):
 
 cookie = f"HWWAFSESID=4f4ad7c4620d81af12; HWWAFSESTIME=1664095148908; sid=3; surl=jxut; SmartUserRole=; Auth-Token={token}"
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6307062c)',
-    'Cookie': cookie,
+    "Host": "jxut.educationgroup.cn"
+    , "Connection": "keep-alive"
+    , "Content-Length": "90"
+    , "Accept": "*/*"
+    , "Origin": "http://jxut.educationgroup.cn"
+    , "X-Requested-With": "XMLHttpRequest"
+    ,
+    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6307062c)"
+    , "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+    ,
+    'Cookie': cookie
+    , "Referer": "http://jxut.educationgroup.cn/tsg/kzwWx/index"
+    , "Accept-Encoding": "gzip, deflate"
+    , "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
 }
 st.write(cookie)
 
