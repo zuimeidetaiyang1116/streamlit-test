@@ -25,11 +25,12 @@ order_time_list = ['早上', '早上2', '中午', '下午', '下午2', '晚上',
 date_list = [date, next_date]
 
 token = "3ff3b7a24f99f2ff99ba052cacf64375"
-token_value = st.text_input("请输入token")
 while not st.button("爬取"):
     token_value = st.text_input("请输入token")
+    st.write(token_value)
     if token_value:
         token = token_value
+        st.write("token",token)
         break
 
 cookie = f"HWWAFSESID=4f4ad7c4620d81af12; HWWAFSESTIME=1664095148908; sid=3; surl=jxut; SmartUserRole=; Auth-Token={token}"
@@ -37,7 +38,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6307062c)',
     'Cookie': cookie,
 }
-st.write(cookie)
+
 
 def get_date_seats(date):
     data = {
