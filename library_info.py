@@ -24,8 +24,8 @@ next_date = (today + offset).strftime('%Y-%m-%d')
 order_time_list = ['早上', '早上2', '中午', '下午', '下午2', '晚上', '晚上2']
 date_list = [date, next_date]
 
-with open("token.txt", "r", encoding='utf-8')as f:
-    token = f.read()
+token_value = st.text_input("请输入token")
+token = token_value
 
 cookie = f"HWWAFSESID=4f4ad7c4620d81af12; HWWAFSESTIME=1664095148908; sid=3; surl=jxut; SmartUserRole=; Auth-Token={token}"
 headers = {
@@ -125,17 +125,9 @@ def taskdate(date, res):
                 pprint.pprint(timeid_data)
     return res
 
-
-if __name__ == '__main__':
-
-    token_value = st.text_input("请输入token")
-    if token_value and st.button("点击爬取"):
-#         with open("token.txt", "w", encoding='utf-8')as f:
-#             f.write(token_value)
-        for date in date_list:
-            msg += find_date_seats(date, '')
-            res += taskdate(date, res)
-        send_msg("图书馆有效座位号> 459", msg, "txt")
-        send_msg("预约座位", res, "txt")
-        st.text(token)
+for date in date_list:
+    msg += find_date_seats(date, '')
+    res += taskdate(date, res)
+send_msg("图书馆有效座位号> 459", msg, "txt")
+send_msg("预约座位", res, "txt")
 
