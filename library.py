@@ -11,10 +11,10 @@ def get_library_info(token):
     st.write("正在爬图书馆信息。。")
     library_info.token = token
     for date in library_info.date_list:
-        msg += library_info.find_date_seats(date, '')
-        res += library_info.taskdate(date,res)
-    send_msg("图书馆有效座位号> 459", msg, "txt")
-    send_msg("预约座位", res, "txt")
+        library_info.msg += library_info.find_date_seats(date, '')
+        library_info.res += library_info.taskdate(date,res)
+    send_msg("图书馆有效座位号> 459", library_info.msg, "txt")
+    send_msg("预约座位", library_info.res, "txt")
     
 
 
