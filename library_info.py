@@ -14,6 +14,7 @@ import requests
 from send_message import send_msg
 
 msg = ""
+res = ""
 msg_list = []
 today = datetime.datetime.now()
 offset = datetime.timedelta(days=1)  # 偏移时间
@@ -123,12 +124,26 @@ def taskdate(date, res):
                 pprint.pprint(timeid_data)
     return res
 
+def get_library_info(token):
+    st.write("正在爬图书馆信息。。")
+    library_info.token = token
+    for date in library_info.date_list:
+        library_info.msg += library_info.find_date_seats(date, '')
+        library_info.res += library_info.taskdate(date,res)
+    send_msg("图书馆有效座位号> 459", library_info.msg, "txt")
+    send_msg("预约座位", library_info.res, "txt")
 
 if __name__ == '__main__':
-    msg = ""
-    res = ""
+    token = st.text_input("请输入token")
+    if token and st.button("点击爬取"):
+        get_library_info(token)
+        st.text(token)
     for date in date_list:
         msg += find_date_seats(date, '')
         res += taskdate(date,res)
     send_msg("图书馆有效座位号> 459", msg, "txt")
     send_msg("预约座位", res, "txt")
+    
+    
+    
+    
