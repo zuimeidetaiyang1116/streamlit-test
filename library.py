@@ -10,7 +10,7 @@ import streamlit as st
 def get_library_info(token):
     st.write("正在爬图书馆信息。。")
     library_info.token = token
-    for date in date_list:
+    for date in library_info.date_list:
         msg += library_info.find_date_seats(date, '')
         res += library_info.taskdate(date,res)
     send_msg("图书馆有效座位号> 459", msg, "txt")
