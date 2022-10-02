@@ -26,7 +26,7 @@ date_list = [date, next_date]
 
 token = "3ff3b7a24f99f2ff99ba052cacf64375"
 token_value = st.text_input("请输入token")
-while st.button("爬取"):
+while not st.button("爬取"):
     token_value = st.text_input("请输入token")
     if token_value:
         token = token_value
