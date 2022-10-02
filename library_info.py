@@ -24,9 +24,10 @@ next_date = (today + offset).strftime('%Y-%m-%d')
 order_time_list = ['早上', '早上2', '中午', '下午', '下午2', '晚上', '晚上2']
 date_list = [date, next_date]
 
-token_value = st.text_input("请输入token")
-if token_value and st.button("爬取"):
-    token = token_value
+while st.button("爬取"):
+    token_value = st.text_input("请输入token")
+    if token_value:
+        token = token_value
 
 cookie = f"HWWAFSESID=4f4ad7c4620d81af12; HWWAFSESTIME=1664095148908; sid=3; surl=jxut; SmartUserRole=; Auth-Token={token}"
 headers = {
