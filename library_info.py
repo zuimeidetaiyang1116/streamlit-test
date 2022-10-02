@@ -48,6 +48,7 @@ def get_date_seats(date):
     session = requests.session()
     pprint.pprint(headers)
     page_json = session.post(url=url, headers=headers, data=data).text
+    st.write(page_json)
     pprint.pprint(page_json)
     time_data = json.loads(page_json)
     timeid_data = {}
@@ -64,6 +65,7 @@ def get_seates(date, id):
     }
     url = "http://jxut.educationgroup.cn/tsg/kzwWx/getZws"
     page_json = requests.post(url=url, headers=headers, data=data).text
+    st.write(page_json)
     wait_data = json.loads(page_json)
     # pprint.pprint(wait_data)
     # with open("已预约.json", 'w', encoding='utf-8')as f:
