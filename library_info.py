@@ -24,7 +24,9 @@ next_date = (today + offset).strftime('%Y-%m-%d')
 order_time_list = ['早上', '早上2', '中午', '下午', '下午2', '晚上', '晚上2']
 date_list = [date, next_date]
 
-while not st.button("爬取"):
+token = "3ff3b7a24f99f2ff99ba052cacf64375"
+token_value = st.text_input("请输入token")
+while st.button("爬取"):
     token_value = st.text_input("请输入token")
     if token_value:
         token = token_value
