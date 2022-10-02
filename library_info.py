@@ -24,9 +24,9 @@ next_date = (today + offset).strftime('%Y-%m-%d')
 order_time_list = ['早上', '早上2', '中午', '下午', '下午2', '晚上', '晚上2']
 date_list = [date, next_date]
 
-# with open("token.txt", "r", encoding='utf-8')as f:
-#     token = f.read()
-token = ""
+with open("token.txt", "r", encoding='utf-8')as f:
+    token = f.read()
+
 cookie = f"HWWAFSESID=4f4ad7c4620d81af12; HWWAFSESTIME=1664095148908; sid=3; surl=jxut; SmartUserRole=; Auth-Token={token}"
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6307062c)',
@@ -40,7 +40,9 @@ def get_date_seats(date):
     }
     url = "http://jxut.educationgroup.cn/tsg/kzwWx/getSjd"
     session = requests.session()
+    pprint.pprint(headers)
     page_json = session.post(url=url, headers=headers, data=data).text
+    pprint.pprint(page_json)
     time_data = json.loads(page_json)
     timeid_data = {}
     for i in time_data['data']:
@@ -125,9 +127,11 @@ def taskdate(date, res):
 
 
 if __name__ == '__main__':
+
     token_value = st.text_input("请输入token")
     if token_value and st.button("点击爬取"):
-        token = token_value
+        with open("token.txt", "w", encoding='utf-8')as f:
+            f.write(token_value)
         for date in date_list:
             msg += find_date_seats(date, '')
             res += taskdate(date, res)
