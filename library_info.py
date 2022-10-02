@@ -38,7 +38,10 @@ def get_date_seats(date):
     url = "http://jxut.educationgroup.cn/tsg/kzwWx/getSjd"
     session = requests.session()
     page_json = session.post(url=url, headers=headers, data=data).text
-    time_data = json.loads(page_json)
+    try:
+        time_data = json.loads(page_json)
+    except:
+        print("page_json为空")
     timeid_data = {}
     for i in time_data['data']:
         sjdName = i['sjdName']
