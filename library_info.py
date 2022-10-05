@@ -151,21 +151,23 @@ def taskdate(date, res):
                 pprint.pprint(timeid_data)
     return res
 
+
 def do_task():
     global msg
     for date in date_list:
         msg += find_date_seats(date, '')
         # res += taskdate(date, res)
-    with open ("图书馆有效座位号.txt",'w',encoding="utf-8")as f:
+    with open("图书馆有效座位号.txt", 'w', encoding="utf-8")as f:
         f.write(msg)
     # send_msg("图书馆有效座位号> 459", msg, "txt")
     # send_msg("预约座位", res, "txt")
+
 
 if __name__ == '__main__':
     st.header("hello")
     Token = st.text_input("请输入token")
     while True:
-        if token :
+        if len(token) == 32:
             token = Token
             do_task()
             break
