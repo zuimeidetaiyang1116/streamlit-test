@@ -167,8 +167,9 @@ if __name__ == '__main__':
     st.header("hello")
     token_value = st.text_input("请输入token")
     while True:
-        st.write(token_value)
+        # st.write("token=",token_value)
         if len(token_value) == 32:
+            st.write("token=", token_value)
             token = token_value
             do_task()
             break
