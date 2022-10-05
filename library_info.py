@@ -165,10 +165,11 @@ def do_task():
 
 if __name__ == '__main__':
     st.header("hello")
-    Token = st.text_input("请输入token")
+    token_value = st.text_input("请输入token")
     while True:
-        if len(token) == 32:
-            token = Token
+        st.write(token_value)
+        if len(token_value) == 32:
+            token = token_value
             do_task()
             break
     st.write("over")
