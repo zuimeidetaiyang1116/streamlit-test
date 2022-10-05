@@ -157,8 +157,9 @@ def do_task():
     for date in date_list:
         msg += find_date_seats(date, '')
         # res += taskdate(date, res)
-    with open("图书馆有效座位号.txt", 'w', encoding="utf-8")as f:
-        f.write(msg)
+    # with open("图书馆有效座位号.txt", 'w', encoding="utf-8")as f:
+    #     f.write(msg)
+    return msg
     # send_msg("图书馆有效座位号> 459", msg, "txt")
     # send_msg("预约座位", res, "txt")
 
@@ -171,6 +172,6 @@ if __name__ == '__main__':
         if len(token_value) == 32:
             st.write("token=", token_value)
             token = token_value
-            do_task()
+            st.write(do_task())
             break
     st.write("over")
